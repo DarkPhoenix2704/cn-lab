@@ -1,32 +1,37 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include<stdio.h>
+
+#include<stdlib.h>
+
+#include<unistd.h>
 
 int main() {
-    int i, x1 = 18;
-    int numFrames;
-    srand(x1++);
-
-    numFrames = rand() % 200;
-    numFrames = numFrames / 22000;
-
-    printf("\nNumber of frames: %d\n", numFrames);
-
-    for (i = 0; i < numFrames; i++) {
-        printf("\nSending frame %d\n", i + 1);
-        srand(x1++);
-
-        if (x1 % 2 == 0) {
-            printf("Waiting for 1 second\n");
-            sleep(1);
-            printf("Missing Acknowledgement 1\n");
-            printf("Resending frame %d\n", i + 1);
-        }
-
-        printf("Acknowledgement received for frame %d\n", i + 1);
+  int i, j, noframes, x, x1 = 10, x2;
+  for (i = 0; i < 200; i++)
+    rand();
+  noframes = rand() / 22000;
+  i = 1;
+  j = 1;
+  noframes = noframes / 22000;
+  printf("\n number of frames is %d", noframes);
+  while (noframes > 0) {
+    printf("\nsending frame %d", 1);
+    srand(x1++); //The srand() function sets the starting point for
+    producing a series of pseudo - random integers
+    x = rand() % 10;
+    if (x % 2 == 0) {
+      for (x2 = 1; x2 < 2; x2++) {
+        printf("waiting for %d seconds\n", x2);
+        sleep(x2);
+        printf("Missing Arknowledgement 1");
+      }
+      printf("\nsending frame %d", i);
+      srand(x1++);
+      x = rand() % 10;
     }
-
-    printf("\nEnd of Stop and Wait protocol\n");
-
-    return 0;
+    printf("\nack received for frame %d", j);
+    noframes -= 1;
+    i++;
+    j++;
+  }
+  printf("in end of stop and wait protocol");
 }
